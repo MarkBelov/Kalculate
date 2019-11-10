@@ -1,0 +1,303 @@
+#include <iostream>
+using namespace std;
+
+int kol(int);
+int sum(int, int, int);
+int raz(int, int, int);
+
+int main()
+{
+long long az, ab, bz, azz = 0, bzz, res = 0, result = 0, r = 0, a, b, c = 0, co = 0, d = 0, f = 1, g = 0, k, m, l = 1, lz = 1, ld = 1, ls = 1, n, s = 0, sj, rj = 0, j = 0, o = 0, oz = 1, dd = 0;
+    char operation;
+    cin >> k >> a >> b >> operation;
+
+    az = a;
+    bz = b;
+
+    switch(operation) {
+
+
+
+
+
+    	case '+':
+
+
+        cout << az << " " << operation << " " << bz << " = " << sum(a, b, k) << "; ";
+
+
+    	break;
+
+
+
+
+
+    	case '-':
+
+
+         cout << az << " " << operation << " " << bz << " = " << raz(a, b, k) << "; ";
+
+
+    	break;
+
+
+
+
+
+    	case '*':
+
+
+    m = a;
+    n = b;
+    c = kol(a);
+    g = kol(b);
+    for (int i= 1; i <= c; i++)
+        {
+            a = a % 10;
+            for (int v = 1; v <= g; v++)
+                {
+                    b = b % 10;
+                    if (a * b < k)
+                        {
+                            s = d + s + a * b * f * l;
+                        }
+                    else
+                        {
+                            d = ((a * b / k) % 10) * f * l * 10;
+                            s = d + s + a * b % k * f * l;
+                        }
+
+result = sum(result, s, k);
+
+						s = 0;
+                       	d = 0;
+                        f = f * 10;
+                    if (n >= k)
+                        {
+                            b = n / f;
+                        }
+                }
+            f = 1;
+            b = n;
+            a = m;
+            a = a / 10;
+            m = a;
+            l = l * 10;
+        }
+   cout << az << " " << operation << " " << bz << " = " << result << "; ";
+
+
+    	break;
+
+
+
+
+
+    	case '/':
+
+
+    		o = a;
+
+
+			while (o >= b ) {
+
+				a = o;
+
+				c = kol(a);
+
+				while (c > 0)
+				{
+					lz *= 10;
+					c -= 1;
+				}
+
+				a = a * 10 / lz;
+
+		    	if (a >= b)
+				{
+				    azz = a;
+                    while (azz >= b) {
+                        azz = raz(azz, b, k);
+                    }
+					res = res * 10 + a / b;
+					o = o - a / b * b * lz / 10;
+				}
+				else
+				{
+					while (a < b)
+				    {
+					ls *= 10;
+					a = a * 10 + (o * 10 * ls / lz) % 10;
+
+					}
+
+
+                    azz = a;
+                    while (azz >= b) {
+                        azz = raz(azz, b, k);
+                        d++;
+                    }
+
+                    res = res * 10 + d;
+                    ab = raz(a, azz, k);
+					while ((kol(ab) < kol(o)) && (o >= ab*10)) {
+                        ab *= 10;
+					}
+					o = raz(o, ab, k);
+					if (o != 0) {
+					while (o * ls * 100/ lz == 0) {
+                        res *= 10;
+                        lz /= 10;
+					}
+                    }
+				}
+				l  = l * 10;
+				lz = 1;
+				ls = 1;
+
+				c = 0;
+				d = 0;
+				oz = o;
+				while (oz > 9) {
+                    oz /= 10;
+				}
+				if ((10 * azz + oz < b) && (o >= b)) {
+                    res = res * 10;
+				}
+			}
+			a = az;
+			while (a % 10 == 0) {
+                res *= 10;
+                a /= 10;
+			}
+
+			if ((o != 0) && (azz ==0)) {
+                azz = o;
+                res *= 10;
+			}
+
+    		cout << az << " " << operation << " " << bz << " = " << res << " " << endl;
+            cout << "Ostatok: " << azz << ";";
+
+    	break;
+    }
+
+
+
+
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+int sum(int a, int b, int k) {
+
+    int o = 0, c = 0, f = 1, d = 0, r = 0, l = 1, result = 0, az, bz;
+
+
+o = a;
+c = kol(a);
+
+a = o;
+f = b;
+
+d = kol(b);
+b = f;
+
+if (d > c) {
+c = d;
+}
+
+for (int v = 1; v <= c; v++) {
+
+a = a % 10;
+b = b % 10;
+
+if (r / l + b + a == k)
+{
+result = result - r;
+b = b + r / l;
+}
+r = 0;
+
+if ((a + b) < k) {
+result = result + (a + b) * l;
+
+} else {
+result = result + (a + b) % k * l;
+r = (a + b) / k * l * 10;
+}
+result = result + r;
+
+
+l = l*10;
+
+a = o / 10;
+o = o / 10;
+
+b = f / 10;
+f = f / 10;
+}
+
+return result;
+}
+
+int raz(int a, int b, int k) {
+
+int o = 0, c = 0, f = 1, d = 0, result = 0, l = 1, g = 0, ls = 1, az, bz, log = 0;
+bz = b;
+az = a;
+o = a;
+c = kol(a);
+
+f = b;
+
+d = kol(b);
+
+for (int v = 1; v <=c; v++) {
+	a = a % 10;
+	b = b % 10;
+	if (log  > 0) {
+            a = k - 1;
+            log--;
+        }
+	if ((a - b) >= 0) {
+		result = result + (a - b) * l;
+	} else {
+		result = result + (k + a - b) * l;
+		g = 0;
+		while (g == 0) {
+			g = o / (ls * 10) % 10;
+			ls = ls * 10;
+		}
+		log = kol(ls) - 2;
+        o = o - ls;
+
+	}
+
+	l = l*10;
+    ls = 1;
+	o = o / 10;
+	a = o;
+	f = f / 10;
+	b = f;
+}
+
+return result;
+}
+
+int kol(int a) {
+    int b = 0;
+
+while (a >= 1) {
+    a /= 10;
+    b++;
+}
+return(b);
+}
